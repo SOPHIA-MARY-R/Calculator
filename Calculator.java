@@ -19,7 +19,7 @@ public class Calculator implements  ActionListener{
     double num1=0, num2=0, result=0;
     char operator;
 
-    Calculator(){
+    public Calculator(){
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
         //by default JFrame is hidden when the user closes the window
@@ -29,9 +29,15 @@ public class Calculator implements  ActionListener{
         frame.setLayout(null);
         //set the layout of the container, FlowLayout, BorderLayout, GridLayout, null Layout
 
+        textField = new JTextField();
+        textField.setBounds(50, 25, 300, 50);
+        textField.setFont(myFont);
+        textField.setEditable(false);
+
+        frame.add(textField);
         frame.setVisible(true);//to make the frame appear on the screen
     }
-    public static void main(String[] args){
+    public static  void main(String[] args){
         Calculator calc = new Calculator();
     }
     @Override
