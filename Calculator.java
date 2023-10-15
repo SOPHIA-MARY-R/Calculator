@@ -1,12 +1,9 @@
 import javax.swing.*; //to create window based applications (light weight desktop applications)
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import java.awt.*; //AWT -> Abstract Window Toolkit; API to develop GUI or window-based-applications using Java
 import java.awt.event.*;
-import java.awt.geom.RoundRectangle2D;
 
-public class Calculator implements  ActionListener{
-
+public class Calculator implements  ActionListener, MouseListener{
     JFrame frame;
     //JFrame => top level container that provides a window on the screen
     JTextField textField;
@@ -60,6 +57,7 @@ public class Calculator implements  ActionListener{
 
         for(int i=0; i<8; i++){
             functionButtons[i].addActionListener(this);
+            functionButtons[i].addMouseListener(this);
             functionButtons[i].setFont(myFont);
             functionButtons[i].setFocusable(false); //focuses the component (focuses the text, draws an outline around text when clicked)
             functionButtons[i].setBackground(Color.orange);
@@ -70,6 +68,7 @@ public class Calculator implements  ActionListener{
         for(int i=0; i<10; i++){
             numberButtons[i] = new JButton(String.valueOf(i));
             numberButtons[i].addActionListener(this);
+            numberButtons[i].addMouseListener(this);
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
             numberButtons[i].setBackground(Color.orange);
@@ -170,6 +169,115 @@ public class Calculator implements  ActionListener{
             for(int i=0; i<string.length()-1; i++){
                 textField.setText(textField.getText()+string.charAt(i));
             }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e){
+        for(int i=0; i<10; i++){
+            if(e.getSource() == numberButtons[i]){
+                numberButtons[i].setBackground(Color.white);
+                numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
+            }
+        }
+        for(int i=0; i<8; i++){
+            if(e.getSource() == functionButtons[i]){
+                functionButtons[i].setBackground(Color.white);
+                functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
+            }
+        }
+        if(e.getSource() == delButton){
+            delButton.setBackground(Color.white);
+        }
+        if(e.getSource() == clrButton){
+            clrButton.setBackground(Color.white);
+        }
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        for(int i=0; i<10; i++){
+            if(e.getSource() == numberButtons[i]){
+                numberButtons[i].setBackground(Color.white);
+                numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
+            }
+        }
+        for(int i=0; i<8; i++){
+            if(e.getSource() == functionButtons[i]){
+                functionButtons[i].setBackground(Color.white);
+                functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
+            }
+        }
+        if(e.getSource() == delButton){
+            delButton.setBackground(Color.white);
+        }
+        if(e.getSource() == clrButton){
+            clrButton.setBackground(Color.white);
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        for(int i=0; i<10; i++){
+            if(e.getSource() == numberButtons[i]){
+                numberButtons[i].setBackground(Color.orange);
+                numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
+            }
+        }
+        for(int i=0; i<8; i++){
+            if(e.getSource() == functionButtons[i]){
+                functionButtons[i].setBackground(Color.orange);
+                functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
+            }
+        }
+        if(e.getSource() == delButton){
+            delButton.setBackground(Color.orange);
+        }
+        if(e.getSource() == clrButton){
+            clrButton.setBackground(Color.orange);
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        for(int i=0; i<10; i++){
+            if(e.getSource() == numberButtons[i]){
+                numberButtons[i].setBackground(Color.white);
+                numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
+            }
+        }
+        for(int i=0; i<8; i++){
+            if(e.getSource() == functionButtons[i]){
+                functionButtons[i].setBackground(Color.white);
+                functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
+            }
+        }
+        if(e.getSource() == delButton){
+            delButton.setBackground(Color.white);
+        }
+        if(e.getSource() == clrButton){
+            clrButton.setBackground(Color.white);
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        for(int i=0; i<10; i++){
+            if(e.getSource() == numberButtons[i]){
+                numberButtons[i].setBackground(Color.orange);
+                numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
+            }
+        }
+        for(int i=0; i<8; i++){
+            if(e.getSource() == functionButtons[i]){
+                functionButtons[i].setBackground(Color.orange);
+                functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
+            }
+        }
+        if(e.getSource() == delButton){
+            delButton.setBackground(Color.orange);
+        }
+        if(e.getSource() == clrButton){
+            clrButton.setBackground(Color.orange);
         }
     }
 }
