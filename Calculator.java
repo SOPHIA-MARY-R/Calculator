@@ -1,6 +1,9 @@
 import javax.swing.*; //to create window based applications (light weight desktop applications)
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import java.awt.*; //AWT -> Abstract Window Toolkit; API to develop GUI or window-based-applications using Java
 import java.awt.event.*;
+import java.awt.geom.RoundRectangle2D;
 
 public class Calculator implements  ActionListener{
 
@@ -20,12 +23,14 @@ public class Calculator implements  ActionListener{
     char operator;
 
     public Calculator(){
+        //FRAME
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
         //by default JFrame is hidden when the user closes the window
         //so you have to define the behaviour of the application when closed
 
         frame.setSize(420, 550);
+        frame.getContentPane().setBackground(Color.black);
         frame.setLayout(null);
         //set the layout of the container, FlowLayout, BorderLayout, GridLayout, null Layout
 
@@ -34,7 +39,6 @@ public class Calculator implements  ActionListener{
         textField.setBounds(50, 25, 300, 50);
         textField.setFont(myFont);
         textField.setEditable(false);//to prevent directly typing in the textField
-        //
 
         //FUNCTION BUTTONS
         addButton = new JButton("+");
@@ -43,8 +47,8 @@ public class Calculator implements  ActionListener{
         divButton = new JButton("/");
         decButton = new JButton(".");
         equButton = new JButton("=");
-        delButton = new JButton("DEL");
-        clrButton = new JButton("CLR");
+        delButton = new JButton("Delete");
+        clrButton = new JButton("Clear");
         functionButtons[0] = addButton;
         functionButtons[1] = subButton;
         functionButtons[2] = mulButton;
@@ -57,7 +61,9 @@ public class Calculator implements  ActionListener{
         for(int i=0; i<8; i++){
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont);
-            //functionButtons[i].setFocusable(false); //focuses the component
+            functionButtons[i].setFocusable(false); //focuses the component (focuses the text, draws an outline around text when clicked)
+            functionButtons[i].setBackground(Color.orange);
+            functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
         }
 
         //NUMBER BUTTONS
@@ -65,6 +71,8 @@ public class Calculator implements  ActionListener{
             numberButtons[i] = new JButton(String.valueOf(i));
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
+            numberButtons[i].setBackground(Color.orange);
+            numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
         }
 
         //DELETE BUTTON
@@ -72,9 +80,32 @@ public class Calculator implements  ActionListener{
         //CLEAR BUTTON
         clrButton.setBounds(205, 430, 145, 50);
 
+        //PANEL
+        panel = new JPanel();
+        panel.setBounds(50, 100, 300, 300);
+        panel.setLayout(new GridLayout(4, 4, 2, 2));
+        panel.setBackground(Color.black);
+        panel.add(numberButtons[1]);
+        panel.add(numberButtons[2]);
+        panel.add(numberButtons[3]);
+        panel.add(addButton);
+        panel.add(numberButtons[4]);
+        panel.add(numberButtons[5]);
+        panel.add(numberButtons[6]);
+        panel.add(subButton);
+        panel.add(numberButtons[7]);
+        panel.add(numberButtons[8]);
+        panel.add(numberButtons[9]);
+        panel.add(mulButton);
+        panel.add(decButton);
+        panel.add(numberButtons[0]);
+        panel.add(equButton);
+        panel.add(divButton);
+
         frame.add(textField);
         frame.add(delButton);
         frame.add(clrButton);
+        frame.add(panel);
         frame.setVisible(true);//to make the frame appear on the screen
     }
     public static  void main(String[] args){
