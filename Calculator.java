@@ -8,9 +8,9 @@ public class Calculator implements  ActionListener, MouseListener{
     //JFrame => top level container that provides a window on the screen
     JTextField textField;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[8];
+    JButton[] functionButtons = new JButton[9];
     JButton addButton, subButton, mulButton, divButton;
-    JButton decButton, equButton, delButton, clrButton;
+    JButton decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;
     //JPanel => container that can store a group of components
 
@@ -44,8 +44,9 @@ public class Calculator implements  ActionListener, MouseListener{
         divButton = new JButton("/");
         decButton = new JButton(".");
         equButton = new JButton("=");
-        delButton = new JButton("Delete");
-        clrButton = new JButton("Clear");
+        delButton = new JButton("DEL");
+        clrButton = new JButton("CLR");
+        negButton = new JButton("(-)");
         functionButtons[0] = addButton;
         functionButtons[1] = subButton;
         functionButtons[2] = mulButton;
@@ -54,8 +55,9 @@ public class Calculator implements  ActionListener, MouseListener{
         functionButtons[5] = equButton;
         functionButtons[6] = delButton;
         functionButtons[7] = clrButton;
+        functionButtons[8] = negButton;
 
-        for(int i=0; i<8; i++){
+        for(int i=0; i<9; i++){
             functionButtons[i].addActionListener(this);
             functionButtons[i].addMouseListener(this);
             functionButtons[i].setFont(myFont);
@@ -75,10 +77,12 @@ public class Calculator implements  ActionListener, MouseListener{
             numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
         }
 
+        //NEGATE BUTTON
+        negButton.setBounds(50, 430, 100, 50);
         //DELETE BUTTON
-        delButton.setBounds(50, 430, 145, 50);
+        delButton.setBounds(152, 430, 100, 50);
         //CLEAR BUTTON
-        clrButton.setBounds(205, 430, 145, 50);
+        clrButton.setBounds(254, 430, 100, 50);
 
         //PANEL
         panel = new JPanel();
@@ -103,9 +107,10 @@ public class Calculator implements  ActionListener, MouseListener{
         panel.add(divButton);
 
         frame.add(textField);
+        frame.add(panel);
         frame.add(delButton);
         frame.add(clrButton);
-        frame.add(panel);
+        frame.add(negButton);
         frame.setVisible(true);//to make the frame appear on the screen
     }
     public static  void main(String[] args){
@@ -151,6 +156,7 @@ public class Calculator implements  ActionListener, MouseListener{
                     result = num1 - num2;
                     break;
                 case '*':
+                    //System.out.println(num1 + " " + num2);
                     result = num1 * num2;
                     break;
                 case '/':
@@ -180,7 +186,7 @@ public class Calculator implements  ActionListener, MouseListener{
                 numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
             }
         }
-        for(int i=0; i<8; i++){
+        for(int i=0; i<9; i++){
             if(e.getSource() == functionButtons[i]){
                 functionButtons[i].setBackground(Color.white);
                 functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
@@ -201,7 +207,7 @@ public class Calculator implements  ActionListener, MouseListener{
                 numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
             }
         }
-        for(int i=0; i<8; i++){
+        for(int i=0; i<9; i++){
             if(e.getSource() == functionButtons[i]){
                 functionButtons[i].setBackground(Color.white);
                 functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
@@ -223,7 +229,7 @@ public class Calculator implements  ActionListener, MouseListener{
                 numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
             }
         }
-        for(int i=0; i<8; i++){
+        for(int i=0; i<9; i++){
             if(e.getSource() == functionButtons[i]){
                 functionButtons[i].setBackground(Color.orange);
                 functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
@@ -245,7 +251,7 @@ public class Calculator implements  ActionListener, MouseListener{
                 numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
             }
         }
-        for(int i=0; i<8; i++){
+        for(int i=0; i<9; i++){
             if(e.getSource() == functionButtons[i]){
                 functionButtons[i].setBackground(Color.white);
                 functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.white, Color.white, Color.white, Color.white));
@@ -267,7 +273,7 @@ public class Calculator implements  ActionListener, MouseListener{
                 numberButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
             }
         }
-        for(int i=0; i<8; i++){
+        for(int i=0; i<9; i++){
             if(e.getSource() == functionButtons[i]){
                 functionButtons[i].setBackground(Color.orange);
                 functionButtons[i].setBorder(new BevelBorder(BevelBorder.LOWERED, Color.orange, Color.orange, Color.orange, Color.orange));
