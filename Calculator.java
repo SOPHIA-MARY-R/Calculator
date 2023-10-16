@@ -176,6 +176,11 @@ public class Calculator implements  ActionListener, MouseListener{
                 textField.setText(textField.getText()+string.charAt(i));
             }
         }
+        if(e.getSource() == negButton){
+            double num = Double.parseDouble(textField.getText());
+            num *= -1;
+            textField.setText(String.valueOf(num));
+        }
     }
 
     @Override
